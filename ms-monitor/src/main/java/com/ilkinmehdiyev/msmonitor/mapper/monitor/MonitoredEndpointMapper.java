@@ -16,5 +16,8 @@ public interface MonitoredEndpointMapper {
 
     @Mapping(target = "user", ignore = true)
     @Mapping(target = "id", ignore = true)
-    MonitoredEndpoint toEntity(MonitoredEndpointRequestDto requestDto);
+    MonitoredEndpoint requestToEntity(MonitoredEndpointRequestDto requestDto);
+
+    @Mapping(target = "user", ignore = true)
+    MonitoredEndpoint responseToEntity(MonitoredEndpointResponseDto responseDto);
 }

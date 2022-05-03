@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 @Service
 @Slf4j
-public record MonitoredServiceImpl(
+public record MonitoredEndpointServiceImpl(
         MonitoredEndpointRepo endpointRepo,
         MonitoredEndpointMapper endpointMapper,
         MonitoringResultRepo resultRepo
@@ -46,7 +46,7 @@ public record MonitoredServiceImpl(
 
     @Override
     public void save(MonitoredEndpointRequestDto requestDto) {
-        MonitoredEndpoint monitoredEndpoint = endpointMapper.toEntity(requestDto);
+        MonitoredEndpoint monitoredEndpoint = endpointMapper.requestToEntity(requestDto);
 
         try {
             endpointRepo.save(monitoredEndpoint);
@@ -69,10 +69,5 @@ public record MonitoredServiceImpl(
             log.error("Cannot delete {} entity", endpoint, e);
             throw new IllegalStateException("Cannot delete " + endpoint + " entity");
         }
-    }
-
-    @Override
-    public void monitor() {
-
     }
 }

@@ -16,6 +16,4 @@ public interface MonitoredEndpointService {
     void save(MonitoredEndpointRequestDto requestDto);
 
     void delete(Long id);
-
-    void monitor();
 }

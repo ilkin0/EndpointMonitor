@@ -8,6 +8,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
+import java.util.Set;
 
 import static com.ilkinmehdiyev.msmonitor.model.monitor.MonitoredEndpoint.TABLE_NAME;
 
@@ -16,6 +17,7 @@ import static com.ilkinmehdiyev.msmonitor.model.monitor.MonitoredEndpoint.TABLE_
 @NoArgsConstructor
 @Getter
 @Setter
+@ToString
 @Entity
 @Table(name = TABLE_NAME)
 public class MonitoredEndpoint {
@@ -36,9 +38,14 @@ public class MonitoredEndpoint {
 
     private int monitoredInterval;
 
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
+
+    @ToString.Exclude
+    @OneToMany(mappedBy = "endpoint")
+    private Set<MonitoringResult> monitoringResultSet;
 
     @Override
     public boolean equals(Object o) {

@@ -3,7 +3,6 @@ package com.ilkinmehdiyev.msmonitor.model.monitor;
 import lombok.*;
 
 import javax.persistence.*;
-
 import java.time.LocalDateTime;
 
 import static com.ilkinmehdiyev.msmonitor.model.monitor.MonitoringResult.TABLE_NAME;
@@ -13,6 +12,7 @@ import static com.ilkinmehdiyev.msmonitor.model.monitor.MonitoringResult.TABLE_N
 @NoArgsConstructor
 @Getter
 @Setter
+@ToString
 @Entity
 @Table(name = TABLE_NAME)
 public class MonitoringResult {
@@ -28,6 +28,7 @@ public class MonitoringResult {
 
     private String payload;
 
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "endpoint_id")
     private MonitoredEndpoint endpoint;
