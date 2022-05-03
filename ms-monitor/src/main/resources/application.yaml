@@ -1,0 +1,12 @@
+#spring:
+#  config:
+#    activate:
+#      on-profile:
+#        - db
+#        - common
+
+spring:
+  profiles:
+    include:
+      - common
+      - db
