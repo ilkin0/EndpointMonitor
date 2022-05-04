@@ -50,8 +50,7 @@ public class MonitoredEndpoint {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof MonitoredEndpoint)) return false;
-        MonitoredEndpoint that = (MonitoredEndpoint) o;
+        if (!(o instanceof MonitoredEndpoint that)) return false;
         return getId() == that.getId();
     }
 

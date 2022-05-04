@@ -33,8 +33,9 @@ public class MonitoringJob {
 
     private final RestTemplate restTemplate;
 
-    @Scheduled(fixedDelayString = "PT30S")
+    @Scheduled(fixedDelayString = "PT5M")
     public void monitorResults() {
+//        TODO instead of fixed time period, it must be dynamically form DB?
         List<MonitoredEndpoint> endpoints = endpointRepo.findAll();
 
         ExecutorService executor = Executors.newFixedThreadPool(endpoints.size());

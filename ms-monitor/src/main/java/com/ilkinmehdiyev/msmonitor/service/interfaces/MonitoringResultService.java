@@ -5,7 +5,7 @@ import com.ilkinmehdiyev.msmonitor.model.monitor.MonitoringResult;
 import org.springframework.data.domain.Page;
 
 public interface MonitoringResultService {
-    Page<MonitoringResultResponseDto> getAll();
+    Page<MonitoringResultResponseDto> getAll(Long endpointId);
 
     MonitoringResultResponseDto getById(long endpointId, long id);
     void save(MonitoringResult result);

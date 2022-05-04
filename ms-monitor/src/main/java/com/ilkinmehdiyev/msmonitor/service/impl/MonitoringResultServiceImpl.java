@@ -8,9 +8,12 @@ import com.ilkinmehdiyev.msmonitor.service.interfaces.MonitoredEndpointService;
 import com.ilkinmehdiyev.msmonitor.service.interfaces.MonitoringResultService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @Slf4j
@@ -21,10 +24,15 @@ public record MonitoringResultServiceImpl(
 ) implements MonitoringResultService {
 
     @Override
-    public Page<MonitoringResultResponseDto> getAll() {
+    public Page<MonitoringResultResponseDto> getAll(Long endpointId) {
         PageRequest pageRequest = PageRequest.of(0, 10, Sort.by("id").descending());
-        return resultRepo.findAll(pageRequest)
-                .map(mapper::toResponse);
+        List<MonitoringResult> monitoringResults = resultRepo.findAll();
+
+        List<MonitoringResultResponseDto> dtos = monitoringResults.stream()
+                .filter(r -> r.getEndpoint().getId() == endpointId)
+                .map(mapper::toResponse).toList();
+
+        return new PageImpl<>(dtos, pageRequest, dtos.size());
     }
 
     @Override
