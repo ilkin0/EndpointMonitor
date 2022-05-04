@@ -14,10 +14,10 @@ public interface MonitoredEndpointMapper {
 
     MonitoredEndpointResponseDto toResponse(MonitoredEndpoint monitoredEndpoint);
 
-    @Mapping(target = "user", ignore = true)
+    @Mapping(target = "owner", ignore = true)
     @Mapping(target = "id", ignore = true)
     MonitoredEndpoint requestToEntity(MonitoredEndpointRequestDto requestDto);
 
-    @Mapping(target = "user", ignore = true)
+    @Mapping(target = "owner", ignore = true)
     MonitoredEndpoint responseToEntity(MonitoredEndpointResponseDto responseDto);
 }

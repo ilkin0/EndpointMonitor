@@ -27,6 +27,7 @@ public class MonitoringResult {
 
     private int statusCode;
 
+    @Column(length = 6000)
     private String payload;
 
     @ToString.Exclude

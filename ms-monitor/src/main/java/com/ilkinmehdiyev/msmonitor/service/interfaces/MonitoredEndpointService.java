@@ -7,13 +7,13 @@ import com.ilkinmehdiyev.msmonitor.model.monitor.MonitoredEndpoint;
 import java.util.List;
 
 public interface MonitoredEndpointService {
-    List<MonitoredEndpointResponseDto> getAll();
+    List<MonitoredEndpointResponseDto> getAll(String accessToken);
 
-    MonitoredEndpoint get(Long id);
+    MonitoredEndpoint get(Long id, String accessToken);
 
-    MonitoredEndpointResponseDto getById(Long id);
+    MonitoredEndpointResponseDto getById(Long id, String accessToken);
 
     void save(MonitoredEndpointRequestDto requestDto);
 
-    void delete(Long id);
+    void delete(Long id, String authorization);
 }

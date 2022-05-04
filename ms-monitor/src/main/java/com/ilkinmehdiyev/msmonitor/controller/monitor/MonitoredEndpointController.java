@@ -17,13 +17,15 @@ import static com.ilkinmehdiyev.msmonitor.util.Const.ApiUrl.MONITORED_ENDPOINT;
 public record MonitoredEndpointController(MonitoredEndpointService endpointService) {
 
     @GetMapping
-    public ResponseEntity<List<MonitoredEndpointResponseDto>> getAll() {
-        return ResponseEntity.ok(endpointService.getAll());
+    public ResponseEntity<List<MonitoredEndpointResponseDto>> getAll(
+            @RequestHeader String authorization
+    ) {
+        return ResponseEntity.ok(endpointService.getAll(authorization));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<MonitoredEndpointResponseDto> get(@PathVariable Long id) {
-        return ResponseEntity.ok(endpointService.getById(id));
+    public ResponseEntity<MonitoredEndpointResponseDto> get(@PathVariable Long id, @RequestHeader String authorization) {
+        return ResponseEntity.ok(endpointService.getById(id, authorization));
     }
 
     @PostMapping
@@ -33,8 +35,8 @@ public record MonitoredEndpointController(MonitoredEndpointService endpointServi
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
-        endpointService.delete(id);
+    public ResponseEntity<Void> delete(@PathVariable Long id, @RequestHeader String authorization) {
+        endpointService.delete(id, authorization);
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 }

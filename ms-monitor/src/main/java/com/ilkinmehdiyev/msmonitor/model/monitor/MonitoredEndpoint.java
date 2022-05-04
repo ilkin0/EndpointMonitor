@@ -40,8 +40,8 @@ public class MonitoredEndpoint {
 
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "owner_id")
+    private User owner;
 
     @ToString.Exclude
     @OneToMany(mappedBy = "endpoint")
